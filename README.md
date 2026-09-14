@@ -31,7 +31,7 @@ Here `AdmitsPrivilegeEscalation` is the set of configurations from which there i
 
 `reduce` turns a CNF formula `α` into a configuration as follows.
 
-- `rootPolicy` (ID `rootId`) is attached to the principal. It allows the target action and the attachment of arbitrary policies.
+- `rootPolicy` is attached to the principal. It allows the target action and the attachment of arbitrary policies.
 - For every clause `C ∈ α` there is an attached `clausePolicy C` that denies the target action.
 - For every literal `l` occurring in `α` there is a policy `literalPolicy α l`, which exists but is not attached. It allows detaching the clause policy of each clause containing `l`, and denies attaching the literal policy of the complementary literal.
 
