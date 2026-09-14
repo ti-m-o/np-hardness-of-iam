@@ -1,23 +1,16 @@
-import IAMHardness.CNF
-
 /-!
 # Basic IAM policies
 
 There is one implicit user. Policies can mention the target action and the
-attachment or detachment of other policies.
+attachment or detachment of policies identified by strings.
 This module defines policy data, configurations of attached policies, and
 the authorization and transition semantics over them.
 -/
 
 namespace IAM
 
-/-- Policy identifiers: a distinguished identifier, one per clause, and one per
-literal. The clause and literal constructors are used by the reduction. -/
-inductive PolicyId where
-  | root : PolicyId
-  | clause : Clause → PolicyId
-  | literal : Literal → PolicyId
-  deriving DecidableEq, Repr
+/-- Every policy is identified by a string. -/
+abbrev PolicyId := String
 
 /-- A set of policy identifiers, represented by its membership predicate. -/
 abbrev PolicyIdSet := PolicyId → Prop
@@ -99,7 +92,7 @@ inductive Reachable (config : Configuration) : Configuration → Prop where
 
 /-- `PE` is the set of configurations from which the target action can be
 allowed after some finite sequence of transitions. -/
-def PE (config : Configuration) : Prop :=
+def AdmitsPrivilegeEscalation (config : Configuration) : Prop :=
   ∃ config', Reachable config config' ∧ config'.AllowsTarget
 
 end IAM
