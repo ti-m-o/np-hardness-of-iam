@@ -6,7 +6,7 @@ The bounded version of this problem — where the number of steps in a privilege
 
 This repository contains a proof that the unbounded version of the problem is NP-hard, so it has no polynomial-time algorithm unless P = NP. This in itself is not surprising, given the expressivity of modern IAM languages. However, it is shown that NP-hardness appears already in a tiny fragment of IAM: We need just a single user, a set of policies, and the two IAM actions of attaching and detaching policies.
 
-The proof is formalised in the Lean theorem prover. More precisely, what is formally proved is the correctness of the reduction. NP-hardness also needs the fact that the reduction is computable in polynomial time, which is not hard to see.
+The proof is formalized in the Lean theorem prover. More precisely, the formalization establishes the correctness of the reduction. NP-hardness additionally requires showing that the reduction is computable in polynomial time; this is straightforward but is not formalized. I devised the reduction and proof strategy, while LLMs were used to assist with the Lean formalization.
 
 ## Main result
 
@@ -40,7 +40,7 @@ Intuition: allowing the target action requires detaching every `clausePolicy`, w
 
 ## Building
 
-Build the `IAMHardness` library target with `lake build`. Verified with Lean 4.31.0.
+Build the `IAMHardness` library target with `lake build`.
 
 ## References
 
