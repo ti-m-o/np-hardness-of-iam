@@ -35,6 +35,8 @@ Here `AdmitsPrivilegeEscalation` is the set of configurations from which there i
 - For every clause `C ∈ α` there is an attached `clausePolicy C` that denies the target action.
 - For every literal `l` occurring in `α` there is a policy `literalPolicy α l`, which exists but is not attached. It allows detaching the clause policy of each clause containing `l`, and denies attaching the literal policy of the complementary literal.
 
+![example reduction](reduction.png)
+
 Intuition: allowing the target action requires detaching every `clausePolicy`, which requires attaching the `literalPolicy` of a literal in that clause; we think of this as assigning the literal the truth value $1$. Because complementary literal policies deny each other's attachment, no literal and its complement can get assigned to $1$. Therefore detaching every `clausePolicy` corresponds to finding a satisfying assignment of `α`.
 
 
