@@ -1,0 +1,6 @@
+name = "np-hardness-of-iam"
+version = "0.1.0"
+defaultTargets = ["IAMHardness"]
+
+[[lean_lib]]
+name = "IAMHardness"
