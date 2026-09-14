@@ -1,16 +1,23 @@
+import IAMHardness.CNF
+
 /-!
 # Basic IAM policies
 
 There is one implicit user. Policies can mention the target action and the
-attachment or detachment of policies identified by their ID.
+attachment or detachment of other policies.
 This module defines policy data, configurations of attached policies, and
 the authorization and transition semantics over them.
 -/
 
 namespace IAM
 
-/-- Every policy is identified by a natural number. -/
-abbrev PolicyId := String
+/-- Policy identifiers: a distinguished identifier, one per clause, and one per
+literal. The clause and literal constructors are used by the reduction. -/
+inductive PolicyId where
+  | root : PolicyId
+  | clause : Clause → PolicyId
+  | literal : Literal → PolicyId
+  deriving DecidableEq, Repr
 
 /-- A set of policy identifiers, represented by its membership predicate. -/
 abbrev PolicyIdSet := PolicyId → Prop
